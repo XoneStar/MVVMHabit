@@ -1,9 +1,10 @@
 package com.goldze.mvvmhabit.ui.network;
 
 import android.app.Application;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 
 import com.goldze.mvvmhabit.BR;
 import com.goldze.mvvmhabit.R;
@@ -29,6 +30,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
 
 public class NetWorkViewModel extends BaseViewModel<DemoRepository> {
     public SingleLiveEvent<NetWorkItemViewModel> deleteItemLiveData = new SingleLiveEvent<>();
+
     //封装一个界面发生改变的观察者
     public UIChangeObservable uc = new UIChangeObservable();
 

@@ -1,19 +1,23 @@
 package com.goldze.mvvmhabit.ui.network;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.goldze.mvvmhabit.BR;
 import com.goldze.mvvmhabit.R;
 import com.goldze.mvvmhabit.app.AppViewModelFactory;
+import com.goldze.mvvmhabit.data.DemoRepository;
 import com.goldze.mvvmhabit.databinding.FragmentNetworkBinding;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
@@ -30,6 +34,7 @@ public class NetWorkFragment extends BaseFragment<FragmentNetworkBinding, NetWor
     @Override
     public void initParam() {
         super.initParam();
+        assert (getActivity() != null);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -54,11 +59,14 @@ public class NetWorkFragment extends BaseFragment<FragmentNetworkBinding, NetWor
     public void initData() {
         //给RecyclerView添加Adpter，请使用自定义的Adapter继承BindingRecyclerViewAdapter，重写onBindBinding方法，里面有你要的Item对应的binding对象。
         // Adapter属于View层的东西, 不建议定义到ViewModel中绑定，以免内存泄漏
-        binding.setAdapter(new BindingRecyclerViewAdapter());
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
+                RecyclerView.VERTICAL, false));
+        binding.setAdapter(new BindingRecyclerViewAdapter<DemoRepository>());
         //请求网络数据
         viewModel.requestNetWork();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void initViewObservable() {
         //监听下拉刷新完成

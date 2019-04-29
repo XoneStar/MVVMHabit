@@ -51,24 +51,27 @@ dependencies {
     api rootProject.ext.dependencies.gson
     //material-dialogs
     api(rootProject.ext.dependencies["material-dialogs-core"]) {
-        exclude group: 'com.android.support'
+        exclude group: 'androidx'
     }
     api(rootProject.ext.dependencies["material-dialogs-commons"]) {
-        exclude group: 'com.android.support'
+        exclude group: 'androidx'
     }
     //glide图片加载库
     api (rootProject.ext.dependencies.glide){
-        exclude group: 'com.android.support'
+        exclude group: 'androidx'
     }
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     //recyclerview的databinding套装
     api(rootProject.ext.dependencies.bindingcollectionadapter) {
-        exclude group: 'com.android.support'
+        exclude group: 'androidx'
     }
     api(rootProject.ext.dependencies["bindingcollectionadapter-recyclerview"]) {
-        exclude group: 'com.android.support'
+        exclude group: 'androidx'
     }
     //Google LiveData和ViewModel组件
     api rootProject.ext.dependencies["lifecycle-extensions"]
     annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+
+    // ksoap2-android
+    api rootProject.ext.dependencies["ksoap2-android"]
 }

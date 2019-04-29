@@ -1,14 +1,15 @@
 package me.goldze.mvvmhabit.base;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import com.trello.rxlifecycle2.LifecycleProvider;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+
+import com.trello.rxlifecycle3.LifecycleProvider;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;

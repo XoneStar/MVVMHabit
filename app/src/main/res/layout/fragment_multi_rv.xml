@@ -7,6 +7,8 @@
 
         <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
 
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+
         <variable
             name="viewModel"
             type="MultiRecycleViewModel" />
@@ -15,9 +17,6 @@
             name="adapter"
             type="BindingRecyclerViewAdapter" />
 
-        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-
-        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,14 +25,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/tools"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             binding:adapter="@{adapter}"
             binding:itemBinding="@{viewModel.itemBinding}"
-            binding:items="@{viewModel.observableList}"
-            binding:layoutManager="@{LayoutManagers.linear()}"
-            binding:lineManager="@{LineManagers.horizontal()}" />
+            binding:items="@{viewModel.observableList}" />
 
     </LinearLayout>
 </layout>
