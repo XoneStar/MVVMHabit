@@ -1,6 +1,5 @@
 package me.goldze.mvvmhabit.base;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.fragment.app.FragmentActivity;
@@ -8,12 +7,14 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by goldze on 2018/9/30.
  */
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
-    @SuppressLint("StaticFieldLeak")
+
     private static volatile ViewModelFactory INSTANCE;
 
     private final Application mApplication;
@@ -35,9 +36,14 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         mApplication = application;
     }
 
+    @NotNull
     @Override
-    public <T extends ViewModel> T create(Class<T> cls) {
-        return (T) new BaseViewModel(mApplication);
+    public <T extends ViewModel> T create(@NotNull Class<T> cls) {
+        T t = cls.cast(new BaseViewModel(mApplication));
+        if (t == null) {
+            throw new NullPointerException("Created ViewModel is NULL!");
+        }
+        return t;
     }
 
     /**

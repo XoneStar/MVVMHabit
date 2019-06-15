@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.ref.WeakReference;
 
 import me.goldze.mvvmhabit.R;
@@ -46,7 +48,7 @@ public class ContainerActivity extends RxAppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, FRAGMENT_TAG, mFragment.get());
     }
